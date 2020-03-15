@@ -11,7 +11,7 @@ Ejercicios
   continuación, una captura de `wavesurfer` en la que se vea con claridad la señal temporal, el contorno de
   potencia y la tasa de cruces por cero, junto con el etiquetado manual de los segmentos.
 
-![Etiquetado manual LAB](https://user-images.githubusercontent.com/61736138/76688887-6d376900-6631-11ea-9484-0c292e25519e.png)
+![Etiquetado_ZRC_Waveform](https://user-images.githubusercontent.com/61736138/76706049-f8256b80-66e4-11ea-8003-953c51f08faa.png)
 
 - A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
 
@@ -26,6 +26,7 @@ Ejercicios
 
 	* ¿Es capaz de sacar alguna conclusión a partir de la evolución de la tasa de cruces por cero?
 	
+		La tasa de cruces por zero nos sirve como alternativa a la poténcia en el caso de las fricativas sordas y otras consonantes que tienen niveles de poténcia bajos y, en ocasiones, se pueden llegar a confundir con silencio o ruido ambiente. Esto lo hacemos teniendo en cuenta que las fricativas sordas tienen una tasa de cruces por cero más elevada que el resto. A pesar de todo, en archivos de audio con poco ruido, únciamente comparando los niveles de poténcia ya se detecta correctamente y, en audios con mucho ruido, este puede distorsionar la detección al tener trozos de ruido con tasas de cruze por cero elevadas. Por lo tanto, la vía principal de detección de actividad vocal es la poténcia.
 
 
 ### Desarrollo del detector de actividad vocal
@@ -33,19 +34,19 @@ Ejercicios
 - Complete el código de los ficheros de la práctica para implementar un detector de actividad vocal tan
   exacto como sea posible. Tome como objetivo la maximización de la puntuación-F `TOTAL`.
   
-  	Cómo se puede observar en la siguiente imagen, una vez completado en código de los ficheros de la práctica para implementar el VAD, hemos conseguido una puntuación FTOTAL máxima de 93%.
+  	Cómo se puede observar en la siguiente imagen, una vez completado en código de los ficheros de la práctica para implementar el VAD, hemos conseguido una puntuación FTOTAL máxima de 98.62%.
 	
-	![audio evaluation](https://user-images.githubusercontent.com/61736138/76689201-c1dbe380-6633-11ea-81de-93f3c8d4fd19.png)
+	![AudioEvaluation](https://user-images.githubusercontent.com/61736138/76706053-007da680-66e5-11ea-87d9-ac9f2d092fdd.png)
 
 
 - Inserte una gráfica en la que se vea con claridad la señal temporal, el etiquetado manual y la detección
   automática conseguida para el fichero grabado al efecto. 
 
-![Comparació VAD LAB](https://user-images.githubusercontent.com/61736138/76688891-788a9480-6631-11ea-99e4-16c37b5c8733.png)
+![Comparacion_LAB_VAD](https://user-images.githubusercontent.com/61736138/76706131-96193600-66e5-11ea-8cd2-319f534c3ff6.png)
 
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
 
-	Hemos conseguido un archivo .vad pràcticamente idéntico al .lab que habiamos generado manualmente; por lo tanto tendriamos un FTOTAL muy próxima al 100%. De hecho, no habiamos etiquetado de forma manual el silencio inicial, cosa que si nos ha detectado el VAD y ha marcado en el archivo .vad. Ahora bien, como hemos configurado nuestro detector de actividad vocal para clavar los periodos de habla y de silencio de nuestro archivo de audio, el FTOTAL en otros archivos de audio puede no llegar a ser tan elevado. Esto lo comprovaremos en el siguiente punto.
+	Hemos conseguido un archivo .vad pràcticamente idéntico al .lab que habiamos generado manualmente; por lo tanto tendriamos un FTOTAL muy próxima al 100%. De hecho, no habiamos etiquetado de forma manual el silencio final, cosa que si nos ha detectado el VAD y ha marcado en el archivo .vad. Ahora bien, como hemos configurado nuestro detector de actividad vocal para clavar los periodos de habla y de silencio de nuestro archivo de audio, el FTOTAL en otros archivos de audio puede no llegar a ser tan elevado. Esto lo comprovaremos en el siguiente punto.
 
 - Evalúe los resultados sobre la base de datos `db.v4` con el script `vad_evaluation.pl` e inserte a 
   continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo
@@ -53,7 +54,8 @@ Ejercicios
   
  	Mediante el script `vad_evaluation.pl` nos perminte evaluar nuestro detector de actividad vocal sobre archivos de audio que no sean el nuestro y comprovar su funcionamiento real. Al ejecutar el comando `scripts/run_vad.sh db.v4/*/*wav` se calcula y muestra por el terminal los parámetros Racall, Precision y F-Score de cada uno de los archivos y, dinalmente, realiza una media que es lo que nos interesa. Los parámetros acabados de mecionar se pueden observar para el caso de fragmentos de silencio y de voz en la siguiente imagen: 
 	
-![DATABASE EVALUATON](https://user-images.githubusercontent.com/61736138/76689213-dfa94880-6633-11ea-8836-c37a0217e236.png)
+![DatabaseEvaluation](https://user-images.githubusercontent.com/61736138/76706161-b6e18b80-66e5-11ea-83b4-3c9fa2a28e1a.png)
+
 
 ### Trabajos de ampliación
 
@@ -72,7 +74,14 @@ Ejercicios
 
 - Si ha usado `docopt_c` para realizar la gestión de las opciones y argumentos del programa `vad`, inserte
   una captura de pantalla en la que se vea el mensaje de ayuda del programa.
+  
+  Mediante el comando `bin/vad -h` o `bin/vad --help` podemos mostrar por terminar el mensaje de ayuda del programa con todos los comandos que podemos insertar:
+  
+  ![VadOptions](https://user-images.githubusercontent.com/61736138/76706241-4edf7500-66e6-11ea-9feb-b0b5271a9841.png)
 
+A continuación observamos el correcto funcionamiento de esta herramienta, ya que al establecer valores distintos a los parámetros `a1, a2, mvs...`, el FTOTAL se reduce como era de esperar al no tener los parámetros idóneos.
+
+![VadParam](https://user-images.githubusercontent.com/61736138/76706274-84845e00-66e6-11ea-9fd4-1038332d6a59.png)
 
 ### Contribuciones adicionales y/o comentarios acerca de la práctica
 
