@@ -54,7 +54,7 @@ Ejercicios
   
  	Mediante el script `vad_evaluation.pl` nos perminte evaluar nuestro detector de actividad vocal sobre archivos de audio que no sean el nuestro y comprovar su funcionamiento real. Al ejecutar el comando `scripts/run_vad.sh db.v4/*/*wav` se calcula y muestra por el terminal los parámetros Racall, Precision y F-Score de cada uno de los archivos y, dinalmente, realiza una media que es lo que nos interesa. Los parámetros acabados de mecionar se pueden observar para el caso de fragmentos de silencio y de voz en la siguiente imagen: 
 	
-![DatabaseEvaluation](https://user-images.githubusercontent.com/61736138/76706161-b6e18b80-66e5-11ea-83b4-3c9fa2a28e1a.png)
+	![DatabaseEvaluation](https://user-images.githubusercontent.com/61736138/76706161-b6e18b80-66e5-11ea-83b4-3c9fa2a28e1a.png)
 
 
 ### Trabajos de ampliación
@@ -77,11 +77,11 @@ Ejercicios
   
   Mediante el comando `bin/vad -h` o `bin/vad --help` podemos mostrar por terminar el mensaje de ayuda del programa con todos los comandos que podemos insertar:
   
-  ![VadOptions](https://user-images.githubusercontent.com/61736138/76706241-4edf7500-66e6-11ea-9feb-b0b5271a9841.png)
+  	![VadOptions](https://user-images.githubusercontent.com/61736138/76706241-4edf7500-66e6-11ea-9feb-b0b5271a9841.png)
 
 A continuación observamos el correcto funcionamiento de esta herramienta, ya que al establecer valores distintos a los parámetros `a1, a2, mvs...`, el FTOTAL se reduce como era de esperar al no tener los parámetros idóneos.
 
-![VadParam](https://user-images.githubusercontent.com/61736138/76706274-84845e00-66e6-11ea-9fd4-1038332d6a59.png)
+	![VadParam](https://user-images.githubusercontent.com/61736138/76706274-84845e00-66e6-11ea-9fd4-1038332d6a59.png)
 
 ### Contribuciones adicionales y/o comentarios acerca de la práctica
 
