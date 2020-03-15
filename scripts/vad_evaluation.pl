@@ -233,7 +233,7 @@ foreach my $filelab (@ARGV) {
 }
 
 if (@ARGV > 1) {
-    print "**************** Summary ****************\n";
+    #print "**************** Summary ****************\n";
     print_statistics(\%acum_statistics, 'TOTAL');
 }
 

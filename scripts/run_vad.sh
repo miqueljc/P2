@@ -1,9 +1,3 @@
-#!/bin/bash
-
-# Be sure that this file has execution permissions:
-# Use the nautilus explorer or chmod +x run_vad.sh
-
-
 DB=/home/albino/PAV/Prácticas/enunciados/obsoletos/P2/db.test
 CMD=bin/vad  #write here the name and path of your program
 
@@ -17,7 +11,7 @@ for filewav in $DB/*/*wav; do
 
     filevad=${filewav/.wav/.vad}
 
-    $CMD -i $filewav -o $filevad || exit 1
+    $CMD -i $filewav -o $filevad --a1 $a1 --a2 $a2 --mst $mst --mvt $mvt --initial $iframes|| exit 1
 
 # Alternatively, uncomment to create output wave files
 #    filewavOut=${filewav/.wav/.vad.wav}
@@ -25,6 +19,6 @@ for filewav in $DB/*/*wav; do
 
 done
 
-vad_evaluation.pl $DB/*/*lab
+scripts/vad_evaluation.pl $DB/*/*lab
 
 exit 0
