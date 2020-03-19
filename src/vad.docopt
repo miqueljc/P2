@@ -6,9 +6,14 @@ Usage:
    vad --version
 
 Options:
-   -i FILE, --input-wav=FILE   WAVE file for voice activity detection
-   -o FILE, --output-vad=FILE  Label file with the result of VAD
-   -w FILE, --output-wav=FILE  WAVE file with silences cleared
-   -v, --verbose  Show debug information
-   -h, --help     Show this screen
-   --version      Show the version of the project
+   -i FILE, --input-wav=FILE     WAVE file for voice activity detection
+   -o FILE, --output-vad=FILE    Label file with the result of VAD
+   -w FILE, --output-wav=FILE    WAVE file with silences cleared
+   --a1=float                    Value of ALFA1
+   --a2=float                    Value of ALFA2
+   --mst=float                   Value of MIN_SILENCE_TIME
+   --mvt=float                   Value of MIN_VOICE_TIME
+   --initial=float               Value of initial frames for k0
+   -v, --verbose                 Show debug information
+   -h, --help                    Show this screen
+   --version                     Show the version of the project

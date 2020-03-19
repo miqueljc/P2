@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 /* TODO: add the needed states */
-typedef enum {ST_UNDEF=0, ST_SILENCE, ST_VOICE, ST_INIT} VAD_STATE;
+typedef enum {ST_UVOICE=0, ST_USILENCE, ST_SILENCE, ST_VOICE, ST_INIT} VAD_STATE;
 
 /* Return a string label associated to each state */
 const char *state2str(VAD_STATE st);
@@ -17,6 +17,7 @@ typedef struct {
   unsigned int frame_length;
   float last_feature; /* for debuggin purposes */
 } VAD_DATA;
+
 
 /* Call this function before using VAD: 
    It should return allocated and initialized values of vad_data
@@ -37,7 +38,7 @@ unsigned int vad_frame_size(VAD_DATA *);
 
     x: input frame
        It is assumed the length is frame_length */
-VAD_STATE vad(VAD_DATA *vad_data, float *x);
+VAD_STATE vad(VAD_DATA *vad_data, float *x, float k0, float ALFA1, float ALFA2, float MIN_SILENCE_TIME, float MIN_VOICE_TIME);
 
 /* Free memory
    Returns the state of the last (undecided) states. */

@@ -22,6 +22,12 @@ typedef struct {
     /* special */
     const char *usage_pattern;
     const char *help_message;
+    /* extra */
+    char *a1;
+    char *a2;
+    char *min_silence_t;
+    char *min_voice_t;
+    char *initial_frames;
 } DocoptArgs;
 
 const char help_message[] =
@@ -36,9 +42,14 @@ const char help_message[] =
 "   -i FILE, --input-wav=FILE   WAVE file for voice activity detection\n"
 "   -o FILE, --output-vad=FILE  Label file with the result of VAD\n"
 "   -w FILE, --output-wav=FILE  WAVE file with silences cleared\n"
-"   -v, --verbose  Show debug information\n"
-"   -h, --help     Show this screen\n"
-"   --version      Show the version of the project\n"
+"   --a1=float                  Value of ALFA1\n"
+"   --a2=float                  Value of ALFA2\n"
+"   --mst=float                 Value of MIN_SILENCE_TIME\n"
+"   --mvt=float                 Value of MIN_VOICE_TIME\n"
+"   --initial=float             Value of initial frames for k0\n"
+"   -v, --verbose               Show debug information\n"
+"   -h, --help                  Show this screen\n"
+"   --version                   Show the version of the project\n"
 "";
 
 const char usage_pattern[] =
@@ -279,7 +290,23 @@ int elems_to_args(Elements *elements, DocoptArgs *args, bool help,
         } else if (!strcmp(option->olong, "--output-wav")) {
             if (option->argument)
                 args->output_wav = option->argument;
+        } else if (!strcmp(option->olong, "--a1")) {
+            if (option->argument)
+                args->a1 = option->argument;
+        } else if (!strcmp(option->olong, "--a2")) {
+            if (option->argument)
+                args->a2 = option->argument;
+        } else if (!strcmp(option->olong, "--mst")) {
+            if (option->argument)
+                args->min_silence_t = option->argument;
+        } else if (!strcmp(option->olong, "--mvt")) {
+            if (option->argument)
+                args->min_voice_t = option->argument;
+        } else if (!strcmp(option->olong, "--initial")) {
+            if (option->argument)
+                args->initial_frames = option->argument;
         }
+        
     }
     /* commands */
     for (i=0; i < elements->n_commands; i++) {
@@ -313,9 +340,16 @@ DocoptArgs docopt(int argc, char *argv[], bool help, const char *version) {
         {NULL, "--version", 0, 0, NULL},
         {"-i", "--input-wav", 1, 0, NULL},
         {"-o", "--output-vad", 1, 0, NULL},
-        {"-w", "--output-wav", 1, 0, NULL}
+        {"-w", "--output-wav", 1, 0, NULL},
+        {NULL, "--a1", 1, 0, NULL},
+        {NULL, "--a2", 1, 0, NULL},
+        {NULL, "--mst", 1, 0, NULL},
+        {NULL, "--mvt", 1, 0, NULL},
+        {NULL, "--initial", 1, 0, NULL}
+
     };
-    Elements elements = {0, 0, 6, commands, arguments, options};
+    Elements elements = {0, 0, 11, commands, arguments, options};
+    //Elements elements = {0, 0, 6, commands, arguments, options};
 
     ts = tokens_new(argc, argv);
     if (parse_args(&ts, &elements))
