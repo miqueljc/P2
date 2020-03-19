@@ -79,7 +79,9 @@ Ejercicios
   
   	![VadOptions](https://user-images.githubusercontent.com/61736138/76706241-4edf7500-66e6-11ea-9feb-b0b5271a9841.png)
 
+
 	A continuación observamos el correcto funcionamiento de esta herramienta, ya que al establecer valores distintos a los parámetros `a1, a2, mvs...`, el FTOTAL se reduce como era de esperar al no tener los parámetros idóneos.
+
 
 	![VadParam](https://user-images.githubusercontent.com/61736138/76706274-84845e00-66e6-11ea-9fd4-1038332d6a59.png)
 
